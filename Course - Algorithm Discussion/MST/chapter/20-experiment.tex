@@ -1,0 +1,26 @@
+\chapter{实验仿真}
+\section{数据设置}
+图G的顶点数为N，对于每个顶点有随机值K条邻边，每条边相邻的点及边权也通过随机生成，为保证连通性其中$K \geq \frac{N}{2}$
+
+\subsection{数据规模}
+N分别取$100,1000,10000,50000,100000$进行测试，每种长度生成10组数据，每组数据运行5次，取总平均运行时间来代表其运行时间，取解的最小值来代表其运行结果
+\subsection{测试环境}
+系统：    Windows 10 Pro 1803 17134.112 \par
+处理器：  Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz 2.50GHz \par
+运行内存：8.00 GB \par
+编译环境：TDM64-GCC 4.9.2
+\section{实验结果\protect\footnote[1]{对于运行结果的比较，可以参见MST问题的三篇论文的总报告}}
+\subsection{运行时间}
+
+\begin{table}[H]
+  \caption{运行时间}
+  \centering
+  \begin{tabular}{p{2.6cm}<{\centering}p{1.3cm}<{\centering}p{1.3cm}<{\centering}p{1.3cm}<{\centering}p{1.3cm}<{\centering}p{1.3cm}<{\centering}p{1.3cm}<{\centering}}
+  \toprule
+   数据规模  & 50 & 100 & 200 & 300 & 400 & 500\\
+  \midrule
+   AB-DCST & 1.17s & 2.58s & 5.01s & 8.33s & 12.75s &15.17s\\
+  \bottomrule
+  \end{tabular} 
+    
+\end{table}

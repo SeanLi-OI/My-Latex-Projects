@@ -1,0 +1,61 @@
+
+\chapter{算法简介}
+
+\section{简介}
+本文主要提供了一种由multilevel bucket与传统（对元素个数敏感）的堆组合而成的一种新型高效基数堆Heap-on-top Priority Queue，由于其较传统基数堆，利用了优先队列与桶相结合后的数据结构再来优化堆，所以此种基数堆在数据量较大的情况下运行效率表现优秀。若其中的优先队列采用高效的Thorup’s heaps\cite{Thorup1996On},其插入操作的时间复杂度能达到$O(log^{\frac{1}{3}}C)$，删除某一元素操作的时间复杂度能达到$O(1)$，取出最小值的时间复杂度能达到$O(log^{\frac{1}{3}+\epsilon})$。由此易得在点集大小为N，边集大小为M，边权范围[0,C]的图上利用Heap-on-top Priority Queue优化的Dijsktra算法的时间复杂度可达$O(m+n(logC)^{\frac{1}{3}+\epsilon})$。
+
+
+\section{算法步骤}
+
+\subsection{基本操作}
+
+\textbf{插入(insert)}
+找到元素所应该插入的位置，并插入：
+\par
+\textbf{弹出最小值(extract-min)}：
+删除列表中的最小值
+\par
+\textbf{调整位置(decrease-key)}：
+删除元素后一些元素需要减小其位置（前移）
+
+\subsection{多层桶}
+考虑一个有$k$层的桶结构$B$，$k$是正整数。除了顶层有无限的桶外，其他层桶有$\Delta$个桶
+我们把第$i$层的第$k$个桶叫做$B(I,j)$，我们用双链表表示桶，从而可以做到常数时间插入和删除。
+\par
+\textbf{插入}：为了插入$u$，找到合适的位置，然后插入
+\par
+\textbf{调整位置}：找到该点，从$B(i,j)$里面取出来，然后把它的键值$\rho$赋新值，重插入合适位置。
+\par
+\textbf{删除最小值}：
+我们先找到最小值，更新$\mu $，然后找到最低的非空桶level i，将其中$B(i,j)$的所有元素检查一遍，删除$B(i,j)$中最小的$u$，并令$\mu = \rho (u)$。最后延展$B(i,j)$，将最小值返回。
+
+\subsection{新型基数堆}
+
+\textbf{插入}：如果$H$为空或者待插入的$u$，那么就把$u$按$multilevel bucket$的方法插入到桶$B$。
+否则，若$c(a,b)<t$，将$u$插入$H$和$B(a,b)$，若$c(a,b)>=t$，将$B(a,b)$置为$inactive$，将$u$插入进去并扩展这个$bucket$
+\par
+\textbf{删除}：如果$u$在$H$中，删除$H$中的$u$，否则在$B$中找到$u$，然后删除$B$中的$u$，并将$\rho (u)$新值再插入进合适位置
+\par
+\textbf{调整位置}：
+若$H$非空，返回$H$最小值。
+否则找到最低的非空$level$，在这个$level$里找到第一个非空$bucket$，和前文的操作一样
+若$i=1$，删除$B(i,j)$中的一个元素，设置$\mu =\rho (u)$该值并返回
+若$i>1$，找到$B(i,j)$最小的那个，然后返回
+当$c(i,j)>t$的时候（$t=$某个参数，$k$和$t$关系到算法的复杂度）就扩展桶$B$，否则设置$B$活跃$active$
+
+\subsection{时间复杂度}
+
+\begin{table}[H]
+  \caption{时间复杂度}
+  \label{tab22}
+  \centering
+  \begin{tabular}{p{2.5cm}<{\centering}p{3.6cm}<{\centering}p{3.6cm}<{\centering}p{3.8cm}<{\centering}}
+  \toprule
+   Trorup heaps & Heap bounds & Hot queue bounds & hot queue, best k and t\\
+  \midrule
+   Insert  & $O(1)$ & $O(k+\frac{kC^{\frac{1}{k}}}{t})$ & $O(\log ^{\frac{1}{3}}C)$  \\
+   Decrease-key  & $O(1)$ & $O(1)$ & $O(1)$ \\
+   Extract-min  & $O(\log ^{\frac{1}{2}+\epsilon}N)$ & $O(\log ^{\frac{1}{2}+\epsilon}t)$ & $O(\log ^{\frac{1}{3}+\epsilon}C)$\\
+  \bottomrule
+  \end{tabular} 
+\end{table}

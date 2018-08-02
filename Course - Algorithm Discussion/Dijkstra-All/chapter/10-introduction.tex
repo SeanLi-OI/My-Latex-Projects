@@ -1,0 +1,14 @@
+
+\chapter{算法简介}
+
+\section{解决有少量不同正边权的单源最短路问题的快速算法}
+
+该算法是由赵子渊同学讲述的，他所参考的论文是《A faster algorithm for the single source shortest path problem with few distinct positive lengths》\cite{Orlin2010A}。这种算法是基于有$n$个顶点，$m$条边。，$K$个不同的正边权的图，这种算法，当$nK\leq 2m$时，时间复杂度为$O(m)$,否则为$O(m\log (\frac{nK}{m}))$。
+
+\section{解决正整数边权的单源最短路问题的快速算法}
+该算法是由张天凡同学讲述的，他所参考的论文是《Faster Algorithms for the Shortest Path Problem》\cite{Ahuja1990Faster}
+这种算法将基数堆与Dijkstra相结合，在满足在$n$个顶点，$m$条边，且其中所有权都小于上界$C$的非负整数权图上，一阶基数堆可以优化到$O(m+n\log C)$。
+
+\section{一种基于桶，堆，表的单调优先队列及其对Dijsktra算法的优化应用}
+该算法是由我讲述的，我所参考的论文是《Buckets, Heaps, Lists, and Monotone Priority Queues》\cite{Cherkassky1997Buckets}
+这种算法在普通基数堆的基础上，将桶与优先队列相结合成新的数据结构multilevel bucket作为新的桶来优化堆，使得在满足在$n$个顶点，$m$条边，且其中所有权都小于上界$C$的非负整数权图上，时间复杂度可降至$O(m+n(\log C)^{\frac{1}{3}+\epsilon})$，其中$\epsilon$为Thorup's heaps\cite{Thorup1996On}的一个常数。

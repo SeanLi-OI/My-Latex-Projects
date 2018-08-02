@@ -1,0 +1,105 @@
+
+\chapter{算法简介}
+
+\section{简介}
+本文提出了一种名为AB-DCST(Ant-Based algorithm for the DCMST problem)，它和其他智能算法一样，循环操作一直到一个边界停止。
+每次循环主要包含两个部分，exploration和construction
+在exploration部分，蚂蚁们去发现较优的边，把他们放进最小生成树的候选集合
+在construction部分中，我们将从候选集合中选出N-1条边建立最小生成树
+这样每一次循环都会获得一个可行解，我们就可以从这些可行解中找到极小解作为最终的解。
+
+
+
+\section{算法步骤}
+
+\subsection{探索(exploration)}
+\subsubsection{每一只蚂蚁的每一步探索}
+每一只蚂蚁对以其所在点为起点的边以信息素的量为概率随机选择一条边继续前进，若终点在当前循环中访问过则不访问，若随机5次均为访问过的节点那么蚂蚁这一回合就不移动，若移动则需在循环结束后更新信息素的量。
+\vspace{0.6cm}
+\begin{breakablealgorithm}
+    \caption{每一步探索}
+    \begin{algorithmic}[1]
+        \Require $a$蚂蚁编号,$i$当前所在顶点编号
+        \Function{Move}{$a,i$}
+            \State $nAttemps\gets 0$
+            \While{$nAttemps<5$}
+                \State 根据信息素的量随机选取一条边$(i,j)$
+                \If{顶点$j$未访问过}
+                    \State 将边$(i,j)$标记为需要进行信息素更新
+                    \State 将蚂蚁$a$移动至顶点$j$
+                    \State 将顶点$j$标记为已被访问
+                    \State break
+                \Else
+                    \State $nAttempts \gets nAttempts+1$
+                \EndIf
+            \EndWhile
+        \EndFunction
+    \end{algorithmic}
+\end{breakablealgorithm}
+
+\subsubsection{信息素更新}
+信息素的更新不仅有自然衰减，而且也有一定的区间（上下界）
+\vspace{0.6cm}
+\begin{breakablealgorithm}
+    \caption{信息素更新}
+    \begin{algorithmic}[1]
+        \Require 信息素更新队列
+        \Ensure 新的信息素含量
+        \Function{Update}{}
+            \State $maxP \gets 1000((M-m)+(M-m)/3)$
+            \State $minP \gets (M-m)/3$
+            \While{信息素更新队列不为空}
+                \State $P(i,j)\gets (1-\eta)P(i,j)+u(i,j)IP(i,j)$
+                \If{$P(i,j)>maxP$}
+                    \State $P(i,j)\gets maxP-IP(i,j)$
+                \Else
+                    \If{$P(i,j)<minP$}
+                        \State $P(i,j)\gets minP+IP(i,j)$
+                    \EndIf
+                \EndIf
+            \EndWhile
+        \EndFunction
+    \end{algorithmic}
+\end{breakablealgorithm}
+
+\subsection{建立(construction)}
+本质为每次选取最优的N条边执行Kruskal算法，执行多次直到存在满足条件的最小生成树
+\vspace{0.6cm}
+\begin{breakablealgorithm}
+    \caption{生成树}
+    \begin{algorithmic}[1]
+        \Require 图$G=(V,E)$，信息素水平$\omega$，度约束$d$
+        \Ensure 当前满足条件的最小生成树
+        \Function{Construct Tree}{$G,\omega,d$}
+            \State 将所有边按照信息素水平排序
+            \State 取$C$为信息素水平前n高的边
+            \State 将$C$中的边按边权从小到大排序
+            \State 对$C$做Kruskal，若未找到生成树，将$C$中再加入$n$条边做最小生成树直到找到为止
+            \State \Return {找到的最小生成树}
+        \EndFunction
+    \end{algorithmic}
+\end{breakablealgorithm}
+
+\subsection{信息素调节}
+
+每次找到最小生成树后都需要对信息素进行增强及上下界控制
+其调节满足一下公式\footnote[1]{$\gamma$为增强常量，初始值为1.5，随程序不断运行而增大}：
+$$
+P(i,j)=
+\left\{\begin{matrix}
+\gamma P(i,j)
+\\ 
+maxP-IP(i,j)\ P(i,j)>maxP
+\\ 
+minP+IP(i,j)\ P(i,j)<minP
+\end{matrix}\right.
+$$
+
+若在100次循环后，仍有一些边保留在集合里，我们人为将其信息素调整至其原始的[0.1,0.3]倍，防止程序误入一些疑似最优值的陷阱
+
+\subsection{边界}
+
+1、2500步内一直无更优解
+\par
+2、运行超过100000步
+

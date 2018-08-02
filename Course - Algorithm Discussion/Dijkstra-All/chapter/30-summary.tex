@@ -1,0 +1,23 @@
+\chapter{结论和总结}
+\section{对Dijkstra优化方向的分析}
+很容易分析，限制Dijkstra算法时间复杂度瓶颈在于从dist[]中选择未确定的顶点的值中最小的值,我们可以通过普通的二叉堆，将插入，删除操作复杂度从$O(N)$降低至$O(\log N)$，将查询复杂度从$O(\log N)$降低至$O(1)$，而二叉堆并非在线查询最值的最优数据结构，所以我们想到可以去运用不同的数据结构来优化甚至代替二叉堆从而降低Dijkstra算法的复杂度。
+\section{论文提出算法的操作复杂度比较}
+\begin{table}[H]
+  \caption{时间复杂度}
+  \centering
+  \begin{tabular}{p{3.2cm}<{\centering}p{3.2cm}<{\centering}p{3.2cm}<{\centering}p{3.2cm}<{\centering}}
+  \toprule
+   Algorithm & Insert & DeleteMin & DecreaseKey\\
+  \midrule
+   Radix Heap  & $O(1)$ & $O(\log C)$ & $O(1)$ \\
+   HOT queue  & $O(\log ^{\frac{1}{3}}C)$ & $O(\log ^{\frac{1}{3}+\epsilon}C)$ & $O(1)$\\
+  \bottomrule
+  \end{tabular} 
+\end{table}
+
+
+\section{适用情况分析}
+通过理论分析易得，算法2适用于稀疏图（m较小），算法3适用于稠密图，实验也证明了这点，在小数据或是十分稀疏的图中算法3的表现甚至不如算法2，但在大多数数据中算法3的表现要优于算法2。
+
+\section{对于算法优化的思考}
+学习了这三篇论文的优化方法，我了解到要对一个问题的现有算法进行优化就要先分析算法复杂度找到复杂度瓶颈与问题条件的关系，在这个关系上进行优化，而优化的方法包括但不限于适用高效数据结构，减少冗余计算等等。

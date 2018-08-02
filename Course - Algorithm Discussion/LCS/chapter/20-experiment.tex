@@ -1,0 +1,43 @@
+\chapter{实验仿真}
+\section{数据设置}
+\subsection{常规数据}
+长度为$N$的字符串A由ASCII码$32\sim 125_{(DEC)}$的字符组成，字符串B由A不超过$\textbf{max}(N/100000,20)$次修改
+\footnote[1]{单次修改操作为一下操作中的一项：将A中一个字符删除、向任意位置插入一个符合要求的字符或者将任意位置的字符修改}
+\subsection{特殊数据}
+由于本篇论文尤其对RNA配对的应用进行了研究，所以我们也设置了RNA数据仿真。
+此种数据与常规数据的唯一区别在于其中的字符构成仅有A,G,C,U构成
+\subsection{数据规模}
+字符串A的长度分别取$1000,10000,100000,1000000,5000000,10000000$进行测试，每种长度生成100组数据，每组数据运行10次，取总平均运行时间来表示其运行时间
+\subsection{测试环境}
+系统：    Windows 10 Pro 1803 17134.112 \par
+处理器：  Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz 2.50GHz \par
+运行内存：8.00 GB \par
+编译环境：TDM64-GCC 4.9.2
+\section{实验结果}
+\subsection{常规数据}
+\begin{table}[H]
+  \caption{常规数据实验结果}
+  \centering
+  \begin{tabular}{p{2.6cm}<{\centering}p{1.9cm}<{\centering}p{1.9cm}<{\centering}p{1.9cm}<{\centering}p{1.9cm}<{\centering}p{1.9cm}<{\centering}p{1.9cm}<{\centering}}
+  \toprule
+   数据规模 & 1000 & 10000 & 100000 & 1000000 & 5000000 & 10000000\\
+  \midrule
+   原LCS & 7.86ms & 892.16ms & 91.62s & >500s & >500s & >500s\\
+   本文的LCS & <0.01ms & 0.27ms & 1.83s & 18.91s & 67.43s & 162.87s\\
+  \bottomrule
+  \end{tabular}
+\end{table}
+  
+\subsection{特殊数据}
+\begin{table}[H]
+  \caption{特殊数据实验结果}
+  \centering
+  \begin{tabular}{p{2.6cm}<{\centering}p{1.9cm}<{\centering}p{1.9cm}<{\centering}p{1.9cm}<{\centering}p{1.9cm}<{\centering}p{1.9cm}<{\centering}p{1.9cm}<{\centering}}
+  \toprule
+   数据规模 & 1000 & 10000 & 100000 & 1000000 & 5000000 & 10000000\\
+  \midrule
+   原LCS & 7.18ms & 878.44ms & 79.29s & >500s & >500s & >500s\\
+   本文的LCS & <0.01ms & 0.16ms & 1.14s & 8.16s & 61.23s & 128.04s\\
+  \bottomrule
+  \end{tabular}
+\end{table}

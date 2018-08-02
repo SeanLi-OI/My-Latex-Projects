@@ -1,0 +1,97 @@
+\chapter{实验仿真}
+\section{数据设置}
+我们使用GRIDGEN生成器\cite{Cherkassky1994Shortest}生成，其两种图的类型及参数如表\ref{tab1}所示。
+
+\begin{table}[H]
+  \caption{Graph Types\protect\footnote[1]{C为边长最大值，x,y为网格图的长和宽}}
+  \label{tab1}
+  \centering
+  \begin{tabular}{p{2.4cm}<{\centering}|p{3.4cm}<{\centering}||p{3.4cm}<{\centering}|p{3.4cm}<{\centering}}
+  \toprule
+   Graph Type  & Graph Family & Range of values & Other values\\
+  \midrule
+  long grid & Modifying $C$ & $C=1\ to\ 1,000,000$ & $x=8192$\\
+   & Modifying $x$ & $x=512\ to\ 32,768$ & $C=16$ \\
+   & & & $C=10,000$\\
+   & & & $C=100,000,000$\\
+   & Modifying $C$ and $x$ & $x=512\ to\ 32,678$ & $C=x$\\
+   \midrule
+  wide grid & Modifying $C$ & $C=1\ to\ 1,000,000$ & $y=8192$\\
+   & Modifying $y$ & $y=512\ to\ 32,768$ & $C=16$ \\
+   & & & $C=10,000$\\
+   & & & $C=100,000,000$\\
+   & Modifying $C$ and $y$ & $y=512\ to\ 32,678$ & $C=y$\\
+  \bottomrule
+  \end{tabular} 
+\end{table}
+
+
+\section{测试环境}
+系统：    Windows 10 Pro 1803 17134.112 \par
+处理器：  Intel(R) Core(TM) i5-7300HQ CPU @ 2.50GHz 2.50GHz \par
+运行内存：8.00 GB \par
+编译环境：TDM64-GCC 4.9.2
+\section{实验结果}
+
+\subsection{Long grids}
+\begin{table}[H]
+  \caption{运行时间($C=16$)}
+  \label{tab22}
+  \centering
+  \begin{tabular}{p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}}
+  \toprule
+   n & 8193 & 16385 & 32769 & 65537 & 131073 &262145 &524289\\
+  \midrule
+   h3  & 0.03s & 0.06s & 0.11s & 0.22s & 0.45s & 0.89s & 1.78s \\
+  \bottomrule
+  \end{tabular} 
+\end{table}
+\begin{table}[H]
+  \caption{运行时间($C=100,000,000$)}
+  \label{tab23}
+  \centering
+  \begin{tabular}{p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}}
+  \toprule
+   n & 8193 & 16385 & 32769 & 65537 & 131073 &262145 &524289\\
+  \midrule
+   h3  & 0.03s & 0.06s & 0.12s & 0.23s & 0.46s & 0.91s & 1.80s \\
+  \bottomrule
+  \end{tabular} 
+\end{table}
+\begin{table}[H]
+  \caption{运行时间($b=131,073$)}
+  \label{tab24}
+  \centering
+  \begin{tabular}{p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}}
+  \toprule
+   C & 100 & 1000 & 10000 & 100000 & 1000000 &9999994 & 99999937\\
+  \midrule
+   h3  & 0.47s & 0.48s & 0.48s & 0.46s & 0.47s & 0.46s & 0.46s \\
+  \bottomrule
+  \end{tabular} 
+\end{table}
+
+\subsection{Wide grids}
+\begin{table}[H]
+  \caption{运行时间($C=100,000,000$)}
+  \centering
+  \begin{tabular}{p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}}
+  \toprule
+   n & 8193 & 16385 & 32769 & 65537 & 131073 &262145 &524289\\
+  \midrule
+   h3  & 0.03s & 0.07s & 0.14s & 0.31s & 0.68s & 1.45s & 3.05s \\
+  \bottomrule
+  \end{tabular} 
+\end{table}
+\begin{table}[H]
+  \caption{运行时间($n=131,073$)}
+  \label{tab25}
+  \centering
+  \begin{tabular}{p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}p{1.5cm}<{\centering}}
+  \toprule
+   C & 100 & 1000 & 10000 & 100000 & 1000000 &9999994 & 99999937\\
+  \midrule
+   h3  & 0.61s & 0.63s & 0.64s & 0.66s & 0.68s & 0.67s & 0.68s \\
+  \bottomrule
+  \end{tabular} 
+\end{table}

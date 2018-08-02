@@ -1,0 +1,64 @@
+\documentclass[
+  degree=bachelor,
+  type=paper,
+  oneside,openany,
+  AutoFakeBold=2.5
+]{nuaathesis}
+
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{float}
+\usepackage{amsmath}
+\floatname{algorithm}{算法}
+\renewcommand{\algorithmicrequire}{\textbf{输入:}}
+\renewcommand{\algorithmicensure}{\textbf{输出:}}
+\makeatletter
+\newenvironment{breakablealgorithm}
+  {% \begin{breakablealgorithm}
+   \begin{center}
+     \refstepcounter{algorithm}% New algorithm
+     \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled 画线
+     \renewcommand{\caption}[2][\relax]{% Make a new \caption
+       {\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+       \ifx\relax##1\relax % #1 is \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+       \else % #1 is not \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+       \fi
+       \kern2pt\hrule\kern2pt
+     }
+  }{% \end{breakablealgorithm}
+     \kern2pt\hrule\relax% \@fs@post for \@fs@ruled 画线
+   \end{center}
+  }
+\makeatother
+% 写作时，使用这个命令只渲染你想查看的部分，提升工作效率，定稿时注释掉整行
+% \includeonly{chapter/00-cover,chapter/30-issues,}
+
+\begin{document}
+
+% 首先，导入论文的基础信息
+\include{chapter/00-cover}
+
+
+\makecover    % 封面
+% \makedeclare  % 承诺书
+
+\frontmatter  % 启用页眉页脚
+%\makeabstract % 摘要
+\nuaatableofcontents  % 正文目录
+
+\mainmatter   % 以下正文
+
+\include{chapter/10-introduction}
+\include{chapter/20-experiment}
+\include{chapter/30-summary}
+
+\backmatter   % 正文后无编号部分，
+\bibliographystyle{nuaathesis}   % 参考文献的样式
+\bibliography{bib/Cite}   % 参考文献
+
+
+
+\end{document}

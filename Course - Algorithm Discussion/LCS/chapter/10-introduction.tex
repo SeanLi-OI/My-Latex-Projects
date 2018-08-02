@@ -1,0 +1,85 @@
+
+\chapter{算法简介}
+
+\section{简介}
+本文介绍了一种时间复杂度为$O(n(m-p))$(其中n,m分别为两串长度，p为LCS的长度)的LCS算法，适用于相似度较高的文本（即最长公共子序列较长的文本），在这种文本中，本算法效率可达到$O(n)$
+
+
+\section{算法步骤}
+
+\subsection{状态转移方程}
+对于长度分别为$m,n(m\leq n)$的字符串A,B有：
+$$
+M(k,i)=
+\left\{\begin{matrix}
+Max\{j\} & k=1,i=n,j\ satisfy\ A(i)=B(j)
+\\ 
+Max\{Max\{j\},L(k,i+1)\} & 1\leq k\leq i<n, j\ satisfy\ A(i)=B(j)
+\\ 
+\end{matrix}\right.
+$$
+
+\subsection{主体算法伪代码}
+\vspace{0.6cm}
+\begin{breakablealgorithm}
+    \caption{时间复杂度为$O(n(m-p))$的LCS算法}
+    \begin{algorithmic}[1]
+        \Require $String\_A, String\_B,m,n$
+        \Ensure $LCS\ of\ String\ A\ and\ B$
+        \Function {Initialization}{$String\_A,String\_B,m,n$}
+            \State $diagonal\_pos \gets m$
+            \State $length\_MAX \gets 0$
+            \While{$length\_MAX<diagonal\_pos$}
+                \State $pos\_A \gets diagonal\_pos$
+                \State $length\_LCS \gets 1$
+                \State $upper\_B \gets n+1$
+                \While{$pos\_a!=0$\ \textbf{and}\ $upper\_B!=0$}
+                    \If{$diagonalpos==m$\ \textbf{or}\ $length\_LCS>length\_MAX$}
+                        \State $f[length\_LCS][pos\_A]+1\gets 0$
+                    \EndIf
+                    \State $lower\_b\gets$\text{bf}$(1,f[length\_LCS][pos\_A+1])$
+                    \State $pos\_B\gets upper\_B-1$
+                    \While{$pos\_B>=lower\_B$\ \textbf{and}\ $String\_A[pos\_A]!=String\_B[pos\_B]$}
+                        \State $pos\_B\gets pos\_B-1$
+                    \EndWhile
+                    \If{$pos\_B>=lower\_b$}
+                        \State $upper\_b\gets pos\_b$
+                    \Else
+                        \State $upper\_b\gets f[length\_LCS][pos\_A+1]$
+                    \EndIf
+                    \State $f[length\_LCS][pos\_A]=upper\_B$
+                    \If{$upper\_B==0$}
+                        \State $length\_LCS\gets length\_LCS-1$
+                    \EndIf
+                    \State $length\_MAX=$\textbf{max}$(length\_MAX,length\_LCS)$
+                    \State $length\_LCS\gets length\_LCS+1$
+                    \State $pos\_A\gets pos\_A-1$
+                \EndWhile
+                \State $diagonal\_pos\gets diagonal\_pos-1$
+            \EndWhile
+            \If{$upper\_B==0$}
+                \State $pos\_A\gets pos\_A+2$
+            \Else
+                \State $pos\_A\gets pos\_A+1$
+            \EndIf
+        \EndFunction
+        \Function{Calculate the LCS}{$length\_MAX,f,String\_A$}
+            \State $pos\_LCS=length\_MAX$
+            \While{$pos\_LCS>0$}
+                \While{$f[pos\_LCS][pos\_A]==f[pos\_LCS][pos\_A+1]$}
+                    \State $pos\_A\gets pos\_A+1$
+                \EndWhile
+                \State $LCS\_A[pos\_LCS]\gets pos\_A$
+                \State $LCS\_B[pos\_LCS]\gets f[pos\_LCS][pos\_A]$
+                \State $pos\_A\gets pos\_A+1$
+                \State $pos\_LCS\gets pos\_LCS-1$
+            \EndWhile
+            \For{$i=length\_MAX\to 1$}
+                \State $LCS\gets LCS+String\_A[LCS\_A[i]]$
+            \EndFor
+        \EndFunction
+    \end{algorithmic}
+\end{breakablealgorithm}
+
+\section{时间复杂度}
+虽然其状态总数为$O(n^2)$，但是由于一些性质，其至多需要计算的状态数为$n(m-p)$个，而计算每个状态的时间复杂度均为$O(1)$，所以易得整体时间复杂度为$O(n(m-p))$
