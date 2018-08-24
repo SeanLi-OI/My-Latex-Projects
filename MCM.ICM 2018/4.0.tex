@@ -4,7 +4,7 @@
 \usepackage{palatino}
 \usepackage{natbib}
 \usepackage{graphicx}
-\usepackage{minted}
+\usepackage{listings}
 \usepackage{float}
 \usepackage{appendix}
 \usepackage{threeparttable}
@@ -545,7 +545,7 @@ As is shown in the graph, FNI in city level has more severe fluctuations than FN
 \caption{raw data input for model}
 \end{figure}
 \label{fig6}
-\begin{minted}{c++}
+\begin{lstlisting}[language=c++]
 
 The code of Analytic Hierarchy Process in C++
 
@@ -571,7 +571,7 @@ void input(){
 				if(val[i]>val[j])a[i][j]=3;
 				else a[i][j]=1.0/3.0;
 				continue;
-			}.......4
+			}
 			
 			if(tmp<6){
 				if(val[i]>val[j])a[i][j]=5;
@@ -616,7 +616,7 @@ void SUM(){
 			b[i][j]=(b[i][j]-minn)/(maxx-minn);
 			b[0][j]+=b[i][j];
 		}
-		printf("%lf	",b[0][j]/N);
+		printf("%lf ",b[0][j]/N);
 	}
 	puts("");
 }
@@ -628,7 +628,7 @@ int main(){
 	SUM();
 	return 0;
 }
-\end{minted}
+\end{lstlisting}
 \label{prog}
 
 \end{document}

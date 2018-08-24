@@ -1,0 +1,33 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Background}{1}{subsection.1.1}
+\contentsline {paragraph}{A country's fragility}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Problem Statement and Analysis}{1}{subsection.1.2}
+\contentsline {section}{\numberline {2}Methodology}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Climate Change Index}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Fragile National Index Model}{3}{subsection.2.2}
+\contentsline {paragraph}{Expert's ranking}{4}{equation.2.7}
+\contentsline {paragraph}{Weight's calculation and consistency check}{4}{equation.2.7}
+\contentsline {subsection}{\numberline {2.3}Threshold}{7}{subsection.2.3}
+\contentsline {section}{\numberline {3}Model Applying}{9}{section.3}
+\contentsline {subsection}{\numberline {3.1}Model Application in Sudan}{9}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Model Application in China}{10}{subsection.3.2}
+\contentsline {section}{\numberline {4}Human Intervention}{11}{section.4}
+\contentsline {subsection}{\numberline {4.1}State's Intervention}{11}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Interventions' Costs}{12}{subsection.4.2}
+\contentsline {paragraph}{Security Apparatus}{12}{subsection.4.2}
+\contentsline {paragraph}{Economic Decline}{12}{table.caption.6}
+\contentsline {paragraph}{Uneven Economic Development}{13}{table.caption.7}
+\contentsline {paragraph}{Demographic Pressure}{14}{table.caption.8}
+\contentsline {paragraph}{Refugees and IDPs}{14}{table.caption.9}
+\contentsline {subsection}{\numberline {4.3}Conclusion}{14}{subsection.4.3}
+\contentsline {section}{\numberline {5}Sensitivity Analysis}{15}{section.5}
+\contentsline {paragraph}{risk parameter}{15}{section.5}
+\contentsline {section}{\numberline {6}Strengths and Weaknesses}{16}{section.6}
+\contentsline {subsection}{\numberline {6.1}Strengths}{16}{subsection.6.1}
+\contentsline {paragraph}{Inclusive}{16}{subsection.6.1}
+\contentsline {paragraph}{Sufficient Literature Proof}{16}{subsection.6.1}
+\contentsline {paragraph}{Comprehensive Methods}{16}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Weaknesses}{17}{subsection.6.2}
+\contentsline {paragraph}{Accuracy Relies on Statistics}{17}{subsection.6.2}
+\contentsline {paragraph}{Reaction to Climate Change Is Not Included}{17}{subsection.6.2}
+\contentsfinish 

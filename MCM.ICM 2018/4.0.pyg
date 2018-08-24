@@ -1,0 +1,82 @@
+
+The code of Analytic Hierarchy Process in C++
+
+#include<stdio.h>
+#include<math.h>
+#include<algorithm>
+using namespace std;
+const int maxn=101;
+double val[maxn];
+double a[maxn][maxn],b[maxn][maxn];
+int N;
+void input(){
+	for(int i=1;i<=N;i++)
+		scanf("%lf",&val[i]);
+	for(int i=1;i<=N;i++)
+		for(int j=1;j<=N;j++){
+			double tmp=fabs(val[i]-val[j]);
+			if(tmp<2){
+				a[i][j]=1;
+				continue;
+			}
+			if(tmp<4){
+				if(val[i]>val[j])a[i][j]=3;
+				else a[i][j]=1.0/3.0;
+				continue;
+			}.......4
+			
+			if(tmp<6){
+				if(val[i]>val[j])a[i][j]=5;
+				else a[i][j]=1.0/5.0;
+				continue;
+			}
+			if(tmp<8){
+				if(val[i]>val[j])a[i][j]=7;
+				else a[i][j]=1.0/7.0;
+				continue;
+			}
+			if(val[i]>val[j])a[i][j]=9;
+			else a[i][j]=1.0/9.0;
+		}
+	for(int i=1;i<=N;i++)
+		for(int j=1;j<=N;j++)
+			b[i][j]=a[i][j];
+}
+void SQRT(){
+	double minn=1000,maxx=-1000;
+	for(int i=1;i<=N;i++){
+		for(int j=2;j<=N;j++)
+			a[i][1]*=a[i][j];
+		a[i][1]=pow(a[i][1],1.0/N);
+		minn=min(a[i][1],minn);
+		maxx=max(a[i][1],maxx);
+	}
+	for(int i=1;i<=N;i++){
+		printf("%lf ",atan(a[i][1])*2/3.1415926);
+	}
+	puts("");
+}
+void SUM(){
+	double minn,maxx;
+	for(int j=1;j<=N;j++){
+		minn=b[1][j];maxx=b[1][j];
+		for(int i=2;i<=N;i++){
+			minn=min(b[i][j],minn);
+			maxx=max(b[i][j],maxx);
+		}
+		for(int i=1;i<=N;i++){
+			b[i][j]=(b[i][j]-minn)/(maxx-minn);
+			b[0][j]+=b[i][j];
+		}
+		printf("%lf	",b[0][j]/N);
+	}
+	puts("");
+}
+int main(){
+	freopen("input.txt","r",stdin);
+	while(scanf("%d",&N)!=EOF)
+		input();
+	SQRT();
+	SUM();
+	return 0;
+}
