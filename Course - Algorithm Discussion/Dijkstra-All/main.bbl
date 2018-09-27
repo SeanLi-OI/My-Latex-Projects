@@ -1,0 +1,39 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{DOI: #1}\else
+  \providecommand{\doi}{DOI: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Orlin\ et~al.(2010)Orlin, Madduri, Subramani, and
+  Williamson]{Orlin2010A}
+ORLIN J B, MADDURI K, SUBRAMANI K, et~al.
+\newblock A faster algorithm for the single source shortest path problem with
+  few distinct positive lengths\allowbreak[J].
+\newblock Journal of Discrete Algorithms, 2010, 8\penalty0 (2): 189--198.
+
+\bibitem[Ahuja\ et~al.(1990)Ahuja, Mehlhorn, Orlin, and
+  Tarjan]{Ahuja1990Faster}
+AHUJA R K, MEHLHORN K, ORLIN J, et~al.
+\newblock Faster algorithms for the shortest path problem\allowbreak[J].
+\newblock Journal of the Acm, 1990, 37\penalty0 (2): 213--223.
+
+\bibitem[Cherkassky\ et~al.(1997)Cherkassky, Goldberg, and
+  Silverstein]{Cherkassky1997Buckets}
+CHERKASSKY B V, GOLDBERG A V, SILVERSTEIN C.
+\newblock Buckets, heaps, lists, and monotone priority queues\allowbreak[C].
+\newblock [S.l.: s.n.], 1997: 83--92.
+
+\bibitem[Thorup(1996)]{Thorup1996On}
+THORUP M.
+\newblock On ram priority queues\allowbreak[J].
+\newblock Siam Journal on Computing, 1996, 30\penalty0 (1): 86--109.
+
+\bibitem[Cherkassky\ et~al.(1994)Cherkassky, Goldberg, and
+  Radzik]{Cherkassky1994Shortest}
+CHERKASSKY B V, GOLDBERG A V, RADZIK T.
+\newblock Shortest paths algorithms: Theory and experimental
+  evaluation\allowbreak[C].
+\newblock [S.l.: s.n.], 1994: 516--525.
+
+\end{thebibliography}
