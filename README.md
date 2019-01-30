@@ -15,7 +15,7 @@
   * Minimum Spanning Tree
 * In our group, I'm in charge of the part of Dijkstra, so there is one paper mainly discuss about Dijkstra algorithm.
 
-## MCM/ICM 2018
+## MCM/ICM 2019
 
     My contest paper for MCM/ICM 2019
 
