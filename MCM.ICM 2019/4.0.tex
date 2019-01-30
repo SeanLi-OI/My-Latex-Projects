@@ -113,16 +113,14 @@ navigation, instructing the best way when emergency happens. Most people install
 \paragraph{Emergency personnel factor} The emergency personnel enter the building. They head to the most crowded passages to help control the crowd. We define the degree to which the emergency personnel affect the GUSH model as the "emergency personnel factor".
 \subsection{Symbols}
 
-\begin{center}
-\topcaption{Symbols\label{tab1}}
-%
-\tablefirsthead{\toprule\multicolumn{1}{c}{\textbf{Symbol}}&\multicolumn{1}{c}{\textbf{Definition}}\\\midrule}
-\tablelasttail{\bottomrule}
-%
-\tablehead{\midrule}
-\tabletail{\midrule}
-
-\begin{supertabular}{p{2cm}<{\centering}p{10cm}<{\centering}}
+\begin{table}[h]
+  \caption{Symbols}
+  \label{tab1}
+  \centering
+  \begin{tabular}{cc}
+  \toprule
+   \textbf{Symbol} & \textbf{Definition}\\
+  \midrule
  $v_s$ & the source node \\ 
  $v_e$ & the sink node \\
  $v_i$ & the node $i$\\
@@ -139,11 +137,9 @@ navigation, instructing the best way when emergency happens. Most people install
  $t$ & the time period of the dynamic optimal flow model \\
  $n$& the total number of the time periods\\
  $p^t_x$ & the possibility of the person x being selfish in the time period t\\
-\end{supertabular}
-\end{center}
-
-
-
+  \bottomrule
+  \end{tabular}
+\end{table}
 
 \section{Model for Evacuation Planning}
 In this section we develop three models: the dynamic maximal flow model, the GUSH model and the adjusted GUSH model. The last two are both established based on the first basic.
